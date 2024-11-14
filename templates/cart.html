@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Fashion</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="/static/css/cart.css">
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a><img src="https://i.ibb.co/kDVwgwp/logo.png" alt="RedStore" width="125px" /></a>
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="/home">Home</a></li>
+                        <li>
+                            <a>
+                                <div class="dropdown">
+                                    <button type="button" class="dropbtn">Products</button>
+                                    <div class="dropdown-content">
+                                         <a href="/product/Tiles">Tiles</a>
+                                         <a href="/product/Mirror">Mirror</a>
+
+
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        {% if user.id is  None %}
+                        <li><a href="/login">SIGN IN</a></li>
+                        {% else %}
+                        <li><a href="/logout">Logout</a></li>
+                        {% endif %}
+
+
+                    </ul>
+                </nav>
+                <a href="/cart">
+                    <img src="https://i.ibb.co/PNjjx3y/cart.png" alt="" width="30px" height="30px" />
+                    <span class="badge badge-pill badge-primary notify">{{cart_count}}</span>
+
+                </a>
+                <img src="https://i.ibb.co/6XbqwjD/menu.png" alt="" class="menu-icon" onclick="menutoggle()" />
+            </div>
+        </div>
+    </div>
+
+    <!-- middle -->
+    <div class="containers">
+        {% if not cart_items %}
+            <div class="text-center container" style="margin-top: 150px; margin-bottom: 150px;">
+                 <h1>Your Shopping Cart is Empty</h1>
+                 <a href="/home/" class="btn btn-primary">Continue Shopping</a>
+            </div>
+
+        {% else %}
+            <div class="product-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PRODUCT</th>
+                            <th>QUANTITY</th>
+                            <th>PRICE</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% load static %}
+                        {% for cart_item in cart_items %}
+                            <tr>
+                                <td>
+                                    <img src="/media/{{cart_item.product.image}}" alt="ATX Jeans" class="product-image">
+                                    <div>
+                                        <a href="{{ cart_item.product.get_url }}"><strong>{{cart_item.product.product_name}}</strong></a><br>
+                                        Color: White<br>
+                                        Size: Small
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="quantity-control">
+                                        <a href="/remove_cart/{{cart_item.product.number}}"><button>-</button></a>
+                                        <div>
+                                            <input type="text" value="{{cart_item.quantity}}">
+                                        </div>
+                                        <a href="/add_cart/{{cart_item.product.number}}"><button>+</button></a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <strong>₹{{cart_item.sub_total}}</strong><br>
+                                    ₹{{cart_item.product.price}} each
+                                </td>
+                                <td>
+                                    <a href="/remove_cart_item/{{cart_item.product.number}}"><button class="remove-btn">Remove</button></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        <div class="summary">
+
+
+            <h3>Total price: ₹{{total}}</h3>
+            <p>Tax: ₹{{tax}}</p>
+
+
+
+            <form method="POST">
+
+
+              <div class="col form-group">
+                  {% csrf_token %}
+                 <label for="">COUPON CODE</label>
+                 <input type="text" name="coupon" class="form-control">
+              </div>
+
+            </form>
+
+            {% if message %}
+                <h4 style="color:green;">{{ message }}</h4>
+            {% endif %}
+
+
+
+            <h3>Grand Total: ₹{{grand_total}}</h3>
+            <a href="/checkout/"><button class="checkout-btn">Checkout</button></a>
+            <div class="continue-shopping">
+                <a href="/home/"><button class="btn btn-light btn-block">Continue Shopping</button></a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="https://i.ibb.co/KbPTYYQ/play-store.png" alt="" />
+                        <img src="https://i.ibb.co/hVM4X2p/app-store.png" alt="" />
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="https://i.ibb.co/j3FNGj7/logo-white.png" alt="" />
+                    <p>
+                        Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.
+                    </p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <p class="copyright">Copyright &copy; 2021 - Red Store</p>
+        </div>
+    </div>
+
+    <!-- js for toggle menu -->
+    <script>
+        var MenuItems = document.getElementById('MenuItems');
+        MenuItems.style.maxHeight = '0px';
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == '0px') {
+                MenuItems.style.maxHeight = '200px';
+            } else {
+                MenuItems.style.maxHeight = '0px';
+            }
+        }
+    </script>
+</body>
+</html>

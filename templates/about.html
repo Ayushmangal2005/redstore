@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Tiles & Hardware Emporium</title>
+
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+
+
+
+
+       <link rel="stylesheet" type="text/css" href="/static/css/about.css">
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"</link>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg-color: #1e1e1e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .containers {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .abc {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        .features, .services {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .feature, .service {
+            flex-basis: calc(25% - 30px);
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover, .service:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature img, .service img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .story, .team, .values, .stats {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story p, .values p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .team-member {
+            flex-basis: calc(33.333% - 30px);
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat {
+            background-color: var(--card-bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .feature, .service {
+                flex-basis: calc(50% - 30px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .feature, .service, .team-member {
+                flex-basis: 100%;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="header">
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a><img src="https://i.ibb.co/kDVwgwp/logo.png" alt="RedStore" width="125px" /></a>
+      </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="/home">Home</a></li>
+          <li>
+            <a >
+              <div class="dropdown">
+                <button type="button" class="dropbtn">products</button>
+                <div class="dropdown-content">
+                   <a href="/product/Tiles">Tiles</a>
+                  <a href="/product/Mirror">Mirror</a>
+
+                </div>
+              </div>
+            </a>
+          </li>
+          <li><a>About</a></li>
+          <li><a href="/contact">Contact</a></li>
+            {% if user.id is None %}
+          <li><a href="/login">SIGN IN</a></li>
+          {% else %}
+          <li><a href="/logout">Logout</a></li>
+          {% endif %}
+
+        </ul>
+      </nav>
+       <a href="/cart">
+                    <img src="https://i.ibb.co/PNjjx3y/cart.png" alt="" width="30px" height="30px" />
+                    <span class="badge badge-pill badge-primary notify">{{ cart_count }}</span>
+
+       </a>
+      <img src="https://i.ibb.co/6XbqwjD/menu.png" alt="" class="menu-icon" onclick="menutoggle()" />
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="abc">
+        <h1>Tiles & Hardware Emporium</h1>
+        <p class="tagline" style="color: white;">Crafting Excellence Since 1985</p>
+    </div>
+
+    <div class="containers">
+        <section class="intro">
+            <h2>About Us</h2>
+            <p style="color: white;">Welcome to Tiles & Hardware Emporium, your premier destination for top-quality tiles, hardware solutions, and expert craftsmanship. For over three decades, we've been transforming spaces and bringing visions to life.</p>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <img src="/media/items/images/mirror_1.webp" alt="Quality Products">
+                <h3>Quality Products</h3>
+                <p style="color: white;">Curated selection of premium tiles and hardware from renowned global manufacturers.</p>
+            </div>
+            <div class="feature">
+                <img src="/media/items/images/tile_1.jpg" alt="Expert Advice">
+                <h3>Expert Advice</h3>
+                <p style="color: white;">Our seasoned professionals offer tailored guidance for your unique project needs.</p>
+            </div>
+            <div class="feature">
+                <img src="/media/items/images/mirror_2.jpeg" alt="Customer Service">
+                <h3>Customer Service</h3>
+                <p style="color: white;">Committed to exceeding expectations with our unparalleled support and care.</p>
+            </div>
+            <div class="feature">
+                <img src="/media/items/images/tile_2.webp" alt="Fast Delivery">
+                <h3>Fast Delivery</h3>
+                <p style="color: white;">Efficient logistics ensure your materials arrive on time, every time.</p>
+            </div>
+        </section>
+
+         <section class="intro">
+            <h2>Services Offered</h2>
+
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <img src="/media/items/images/tile_2.webp" alt="Quality Products">
+                <h3>Tile Installation</h3>
+                <p style="color: white;">Professional installation services for all types of tiles, ensuring perfect fit and finish.</p>
+
+            </div>
+            <div class="feature">
+                <img src="/media/items/images/mirror_2.jpeg" alt="Expert Advice">
+               <h3>Custom Design</h3>
+                <p style="color: white;">Personalized design consultations to create unique patterns and layouts for your space.</p>
+
+            </div>
+            <div class="feature">
+                <img src="/media/items/images/tile_1.jpg" alt="Customer Service">
+                <h3>Hardware Fitting</h3>
+                <p style="color: white;">Expert installation of door handles, cabinet hardware, and other fixtures.</p>
+
+            </div>
+            <div class="feature">
+                <img src="/media/items/images/mirror_1.webp" alt="Fast Delivery">
+               <h3>Maintenance</h3>
+                <p style="color: white;">Ongoing support and maintenance services to keep your tiles and hardware in top condition.</p>
+
+            </div>
+        </section>
+
+
+
+        <section class="story">
+            <h2>Our Story</h2>
+            <p style="color: white;">Founded in 1985 by John and Maria Thompson, Tiles & Hardware Emporium began as a small family-owned store with a big dream: to provide the finest quality tiles and hardware to our local community. From those humble beginnings, we've grown into a respected industry leader, serving homeowners, contractors, and designers across the nation.</p>
+            <p style="color: white;">Our journey has been marked by a relentless pursuit of excellence, innovation, and customer satisfaction. As we've expanded our product range and services, we've never lost sight of our core values: quality, integrity, and personalized service.</p>
+            <p style="color: white;">Today, we're proud to offer an extensive collection of tiles and hardware that cater to diverse styles and needs, from classic elegance to cutting-edge modern designs. Our commitment to sourcing the best products from around the world ensures that our customers always have access to the latest trends and highest quality materials.</p>
+        </section>
+
+        <section class="team">
+            <h2>Our Leadership Team</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="/static/css/images/ayush_2.jpg" alt="Sarah Thompson">
+                    <h3>Ayush Mangal</h3>
+                    <p style="color: white;">CEO</p>
+                </div>
+                <div class="team-member">
+                    <img src="/static/css/images/ayush_1.jpg" alt="Michael Chen">
+                    <h3>Ayush Mangal</h3>
+                    <p style="color: white;">Head of Business</p>
+                </div>
+                <div class="team-member">
+                    <img src="/static/css/images/ayush_3.jpg" alt="Emily Rodriguez">
+                    <h3>Ayush Mangal</h3>
+                    <p style="color: white;">Customer Experience Director</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="values">
+            <h2>Our Core Values</h2>
+            <p style="color: white;"><strong>Quality:</strong> We never compromise on the quality of our products or services. Every tile, every piece of hardware, and every interaction with our team reflects our commitment to excellence.</p>
+            <p style="color: white;"><strong>Integrity:</strong> Honesty and transparency are the foundations of our business. We build lasting relationships with our customers, suppliers, and community based on trust and mutual respect.</p>
+            <p style="color: white;"><strong>Innovation:</strong> We continuously seek new products, technologies, and methods to enhance our offerings and improve our customers' experiences.</p>
+            <p style="color: white;"><strong>Sustainability:</strong> We're committed to environmentally responsible practices, offering eco-friendly products and minimizing our carbon footprint.</p>
+        </section>
+
+        <section class="stats">
+            <h2>Tiles & Hardware Emporium by the Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">39</div>
+                    <div class="stat-label">Years in Business</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">Products</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Customer Satisfaction</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+
+  <div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-col-1">
+        <h3>Download Our App</h3>
+        <p>Download App for Android and iso mobile phone.</p>
+        <div class="app-logo">
+          <img src="https://i.ibb.co/KbPTYYQ/play-store.png" alt="" />
+          <img src="https://i.ibb.co/hVM4X2p/app-store.png" alt="" />
+        </div>
+      </div>
+
+      <div class="footer-col-2">
+        <img src="https://i.ibb.co/j3FNGj7/logo-white.png" alt="" />
+        <p>
+          Our Purpose Is To Sustainably Make the Pleasure and Benefits of
+          Sports Accessible to the Many.
+        </p>
+      </div>
+
+      <div class="footer-col-3">
+        <h3>Useful Links</h3>
+        <ul>
+          <li>Coupons</li>
+          <li>Blog Post</li>
+          <li>Return Policy</li>
+          <li>Join Affiliate</li>
+        </ul>
+      </div>
+
+      <div class="footer-col-4">
+        <h3>Follow us</h3>
+        <ul>
+          <li>Facebook</li>
+          <li>Twitter</li>
+          <li>Instagram</li>
+          <li>YouTube</li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <p class="copyright">Copyright &copy; 2021 - Red Store</p>
+  </div>
+</div>
+
+
+
+
+
+     <!-- js for toggle menu -->
+<script>
+  var MenuItems = document.getElementById('MenuItems');
+  MenuItems.style.maxHeight = '0px';
+
+  function menutoggle() {
+    if (MenuItems.style.maxHeight == '0px') {
+      MenuItems.style.maxHeight = '200px';
+    } else {
+      MenuItems.style.maxHeight = '0px';
+    }
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
