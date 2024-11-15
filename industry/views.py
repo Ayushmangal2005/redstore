@@ -37,10 +37,10 @@ def generate_unique_cart_id():
 
 
 def home(request):
-    return render(request, "home.html")
+    return render(request, "index.html")
 
 def index(request):
-    return render(request, "home.html")
+    return render(request, "index.html")
 
 def contact(request):
     return render(request, "contact.html")
@@ -131,7 +131,7 @@ def placeorder(request):
       send_mail(subject,message,from_email,recipient_list)
 
 
-      return render(request, "home.html")
+      return render(request, "index.html")
 
     else:
         return redirect('checkout')
@@ -431,4 +431,4 @@ def signaction(request):
 @login_required(login_url="login")
 def logoutuser(request):
     logout(request)
-    return render(request, "home.html")
+    return render(request, "index.html")

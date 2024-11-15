@@ -1,11 +1,528 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>Redirecting to <a href="home.html">home.html</a>...</p>
-</body>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+   <head>
+
+       <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Fashion</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+
+      <!-- bootstrap css -->
+     <link rel="stylesheet" type="text/css" href="{% static 'css/webstyle.css' %}">
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+      <script src="/static/javascript/aa.js" defer></script>
+   </head>
+   <style> </style>
+   <body>
+
+<div class="header">
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a><img src="https://i.ibb.co/kDVwgwp/logo.png" alt="RedStore" width="125px" /></a>
+      </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="/home">Home</a></li>
+          <li>
+            <a>
+              <div class="dropdown">
+                <button type="button" class="dropbtn">Products</button>
+                <div class="dropdown-content">
+                  <a href="/product/Tiles">Tiles</a>
+                  <a href="/product/Mirror">Mirror</a>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          {% if user.id is None %}
+          <li><a href="/login">SIGN IN</a></li>
+          {% else %}
+          <li><a href="/logout">Logout</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <a href="/cart">
+        <img src="https://i.ibb.co/PNjjx3y/cart.png" alt="" width="30px" height="30px" />
+        <span class="badge badge-pill badge-primary notify">{{ cart_count }}</span>
+      </a>
+      <img src="https://i.ibb.co/6XbqwjD/menu.png" alt="" class="menu-icon" onclick="menutoggle()" />
+    </div>
+
+    <div>
+      <img src="/media/items/images/cover_photo.jpg" alt="" style="width: 122%; margin-left: -135px;" />
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Featured categories -->
+<div class="categories">
+  <div class="small-container">
+    <div class="row">
+      <div class="col-3">
+        <img src="/media/items/images/tile_1.jpg" alt="" />
+      </div>
+      <div class="col-3">
+        <img src="/media/items/images/mirror_4.jpg" alt="" />
+      </div>
+      <div class="col-3">
+        <img src="/media/items/images/tile_4.jpg" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Featured products -->
+<div class="small-container">
+  <h2 class="title">Featured Products</h2>
+  <div class="row">
+    <div class="col-4">
+      <img src="/media/items/images/mirror_1.webp" alt="" />
+
+        <h4>Mirror</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <p>₹3214.00</p>
+    </div>
+
+    <div class="col-4">
+      <img src="/media/items/images/mirror_3.webp" alt="" />
+      <h4>Mirror</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <p>₹4532.00</p>
+    </div>
+
+    <div class="col-4">
+      <img src="/media/items/images/tile_8.jpeg" alt="" />
+      <h4>Tile</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>
+      <p>₹6540.00</p>
+    </div>
+
+    <div class="col-4">
+      <img src="/media/items/images/tile_6.webp" alt="" />
+      <h4>Tile</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <p>₹6345.00</p>
+    </div>
+  </div>
+  <h2 class="title">Latest Products</h2>
+  <div class="row">
+    <div class="col-4">
+      <img src="/media/items/images/tile_7.webp" alt="" />
+      <h4>tile</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <p>₹4534.00</p>
+    </div>
+
+    <div class="col-4">
+      <img src="/media/items/images/mirror_8.webp" alt="" />
+      <h4>Mirror</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <p>₹6543.00</p>
+    </div>
+
+    <div class="col-4">
+      <img src="/media/items/images/tile_10.jpg" alt="" />
+      <h4>Tile</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>
+      <p>₹3423.00</p>
+    </div>
+
+    <div class="col-4">
+      <img src="/media/items/images/mirror_11.webp" alt="" />
+      <h4>Mirror</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <p>₹3432.00</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <img src="/media/items/images/mirror_10.webp" alt="" />
+      <h4>Mirror</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <p>₹4343.00</p>
+
+    </div>
+
+    <div class="col-4">
+      <img src="/media/items/images/tile_8.jpeg" alt="" />
+      <h4>Tile</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <p>₹4323.00</p>
+    </div>
+
+    <div class="col-4">
+      <img src="/media/items/images/tile_3.webp" alt="" />
+      <h4>Tile</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>
+      <p>₹3432.00</p>
+    </div>
+
+    <div class="col-4">
+      <img src="/media/items/images/mirror_12.jpeg" alt="" />
+      <h4>Mirror</h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <p>₹2343.00</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- offer -->
+
+<div class="offer">
+<div class="containerss small-container">
+      <div class="card">
+        <img class="background accordian" src="/static/css/images/img_1.jpg" alt="">
+
+        <div class="card-content">
+          <div class="profile-image">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2">
+              <line x1="6" x2="10" y1="11" y2="11" />
+              <line x1="8" x2="8" y1="9" y2="13" />
+              <line x1="15" x2="15.01" y1="12" y2="12" />
+              <line x1="18" x2="18.01" y1="10" y2="10" />
+              <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
+            </svg>
+          </div>
+
+          <h3 class="title">INTERIOR 1</h3>
+        </div>
+        <div class="backdrop"></div>
+      </div>
+
+      <div class="card">
+        <img class="background accordian" src="/static/css/images/img_2.jpg" alt="">
+
+        <div class="card-content">
+          <div class="profile-image">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2">
+              <line x1="6" x2="10" y1="11" y2="11" />
+              <line x1="8" x2="8" y1="9" y2="13" />
+              <line x1="15" x2="15.01" y1="12" y2="12" />
+              <line x1="18" x2="18.01" y1="10" y2="10" />
+              <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
+            </svg>
+          </div>
+
+          <h3 class="title">INTERIOR 2</h3>
+        </div>
+        <div class="backdrop"></div>
+      </div>
+
+      <div class="card">
+        <img class="background accordian" src="/static/css/images/img_3.jpg" alt="">
+
+        <div class="card-content">
+          <div class="profile-image">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2">
+              <line x1="6" x2="10" y1="11" y2="11" />
+              <line x1="8" x2="8" y1="9" y2="13" />
+              <line x1="15" x2="15.01" y1="12" y2="12" />
+              <line x1="18" x2="18.01" y1="10" y2="10" />
+              <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
+            </svg>
+          </div>
+
+          <h3 class="title">INTERIOR 3</h3>
+        </div>
+        <div class="backdrop"></div>
+      </div>
+
+      <div class="card">
+        <img class="background accordian" src="/static/css/images/img_4.jpeg" alt="">
+
+        <div class="card-content">
+          <div class="profile-image">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2">
+              <line x1="6" x2="10" y1="11" y2="11" />
+              <line x1="8" x2="8" y1="9" y2="13" />
+              <line x1="15" x2="15.01" y1="12" y2="12" />
+              <line x1="18" x2="18.01" y1="10" y2="10" />
+              <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
+            </svg>
+          </div>
+
+          <h3 class="title">INTERIOR 4</h3>
+        </div>
+        <div class="backdrop"></div>
+      </div>
+
+      <div class="card">
+        <img class="background accordian" src="/static/css/images/img_5.jpg" alt="">
+
+        <div class="card-content">
+          <div class="profile-image">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2">
+              <line x1="6" x2="10" y1="11" y2="11" />
+              <line x1="8" x2="8" y1="9" y2="13" />
+              <line x1="15" x2="15.01" y1="12" y2="12" />
+              <line x1="18" x2="18.01" y1="10" y2="10" />
+              <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
+            </svg>
+          </div>
+
+          <h3 class="title">INTERIOR 5</h3>
+        </div>
+        <div class="backdrop"></div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Testimonial -->
+<div class="testimonial">
+  <div class="small-container">
+    <div class="row">
+      <div class="col-3">
+        <i class="fas fa-quote-left"></i>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Perferendis, quae molestias error id est voluptatibus quos amet
+          numquam aspernatur nam cumque ullam? Veritatis eveniet et, maxime
+          eaque soluta quas modi.
+        </p>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <img src="https://i.ibb.co/zfXD2Tx/user-1.png" alt="" />
+        <h3>Marta W.</h3>
+      </div>
+
+      <div class="col-3">
+        <i class="fas fa-quote-left"></i>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Perferendis, quae molestias error id est voluptatibus quos amet
+          numquam aspernatur nam cumque ullam? Veritatis eveniet et, maxime
+          eaque soluta quas modi.
+        </p>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <img src="https://i.ibb.co/FVyK1KM/user-2.png" alt="" />
+        <h3>Rula P.</h3>
+      </div>
+
+      <div class="col-3">
+        <i class="fas fa-quote-left"></i>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Perferendis, quae molestias error id est voluptatibus quos amet
+          numquam aspernatur nam cumque ullam? Veritatis eveniet et, maxime
+          eaque soluta quas modi.
+        </p>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <img src="https://i.ibb.co/jZ3tQqK/user-3.png" alt="" />
+        <h3>Vika Z.</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- brands -->
+<div class="brands">
+  <div class="small-container">
+    <div class="row">
+      <div class="col-5">
+        <img src="https://i.ibb.co/Gfwzz1S/logo-godrej.png" alt="" />
+      </div>
+
+      <div class="col-5">
+        <img src="https://i.ibb.co/vjrRZFM/logo-oppo.png" alt="" />
+      </div>
+
+      <div class="col-5">
+        <img src="https://i.ibb.co/3zs234S/logo-coca-cola.png" alt="" />
+      </div>
+
+      <div class="col-5">
+        <img src="https://i.ibb.co/7Wt343W/logo-paypal.png" alt="" />
+      </div>
+
+      <div class="col-5">
+        <img src="https://i.ibb.co/GVSNwJD/logo-philips.png" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-col-1">
+        <h3>Download Our App</h3>
+        <p>Download App for Android and iso mobile phone.</p>
+        <div class="app-logo">
+          <img src="https://i.ibb.co/KbPTYYQ/play-store.png" alt="" />
+          <img src="https://i.ibb.co/hVM4X2p/app-store.png" alt="" />
+        </div>
+      </div>
+
+      <div class="footer-col-2">
+        <img src="https://i.ibb.co/j3FNGj7/logo-white.png" alt="" />
+        <p>
+          Our Purpose Is To Sustainably Make the Pleasure and Benefits of
+          Sports Accessible to the Many.
+        </p>
+      </div>
+
+      <div class="footer-col-3">
+        <h3>Useful Links</h3>
+        <ul>
+          <li>Coupons</li>
+          <li>Blog Post</li>
+          <li>Return Policy</li>
+          <li>Join Affiliate</li>
+        </ul>
+      </div>
+
+      <div class="footer-col-4">
+        <h3>Follow us</h3>
+        <ul>
+          <li>Facebook</li>
+          <li>Twitter</li>
+          <li>Instagram</li>
+          <li>YouTube</li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <p class="copyright">Copyright &copy; 2021 - Red Store</p>
+  </div>
+</div>
+
+<!-- js for toggle menu -->
+<script>
+  var MenuItems = document.getElementById('MenuItems');
+  MenuItems.style.maxHeight = '0px';
+
+  function menutoggle() {
+    if (MenuItems.style.maxHeight == '0px') {
+      MenuItems.style.maxHeight = '200px';
+    } else {
+      MenuItems.style.maxHeight = '0px';
+    }
+  }
+</script>
+
+
+
+
+
+
+   </body>
 </html>
