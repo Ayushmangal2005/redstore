@@ -12,6 +12,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 from items.models import Product
+from cart.models import Contact
 
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -36,6 +37,9 @@ def generate_unique_cart_id():
 
 
 def home(request):
+    return render(request, "home.html")
+
+def index(request):
     return render(request, "home.html")
 
 def contact(request):
@@ -162,6 +166,20 @@ def checkout(request, total=0, quantity=0, cart_items=None):
             email = request.POST.get('email')
             number = request.POST.get('phone')
             address = request.POST.get('address')
+
+            print(first_name)
+            print(last_name)
+            print(email)
+            print(number)
+            print(address)
+
+            Contact.objects.create(
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                phone=number,
+                address=address
+            )
 
 
             request.session['first_name'] = first_name
