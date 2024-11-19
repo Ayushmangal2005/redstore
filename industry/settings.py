@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-nt^z=h96$ng99op&yud#0aac+*y28(h76@coyma8hcqkcvzx&o
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_ALLOW_ALL = True
+
 
 
 
@@ -108,12 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': os.environ.get('MEMCACHED_SERVERS')
-    }
-}
+
 
 
 # Internationalization
