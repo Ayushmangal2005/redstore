@@ -15,7 +15,72 @@
     <!-- bootstrap css -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href="/static/css/cart.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"</link>
 </head>
+<style>
+/* Container for the search bar */
+.search-container {
+  width: 100%;
+  max-width: 400px;
+  margin-left: 50px;
+  height: 40px;
+}
+
+/* Styling for the search box */
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 2px solid #007bff;
+  border-radius: 25px;
+  overflow: hidden;
+  background-color: #fff;
+  height: 40px;
+  margin-top: 0;
+}
+
+/* Input field inside the search box */
+.search-input {
+  flex: 1;
+  padding: 13px 21px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+/* Search button styling */
+.search-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 17px 20px;
+  cursor: pointer;
+}
+
+/* Icon inside the search button */
+.search-button i {
+  font-size: 16px;
+}
+
+/* Hover effect for the search button */
+.search-button:hover {
+  background-color: #0056b3;
+}
+.coupon {
+width: 300px;
+display: flex;
+
+}
+.search2 {
+height: 5px;
+width: 5px;
+
+background-color: BLACK;
+
+
+}
+</style>
+
 
 <body>
     <!-- header -->
@@ -25,6 +90,18 @@
                 <div class="logo">
                     <a><img src="https://i.ibb.co/kDVwgwp/logo.png" alt="RedStore" width="125px" /></a>
                 </div>
+
+
+                <div class="search-container">
+                   <form action="/search" method="GET" class="search-box">
+                      <input type="text" name="keyword" class="search-input" placeholder="Search...">
+                      <button type="submit" class="search-button">
+                         <i class="fa fa-search"></i>
+                      </button>
+                   </form>
+                </div>
+
+
                 <nav>
                     <ul id="MenuItems">
                         <li><a href="/home">Home</a></li>
@@ -126,10 +203,20 @@
             <form method="POST">
 
 
-              <div class="col form-group">
+              <div class="col form-group ">
                   {% csrf_token %}
                  <label for="">COUPON CODE</label>
-                 <input type="text" name="coupon" class="form-control">
+                  <div class="coupon">
+                      <input type="text" name="coupon" class="form-control" placeholder="Coupon Code...">
+
+                      <button type="submit" class="search-button search2">
+
+                             <i class="fa fa-search"></i>
+
+                      </button>
+
+                  </div>
+
               </div>
 
             </form>

@@ -3,10 +3,6 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect,  get_object_or_404
 from django.db import models
-
-
-
-
 from django.core.mail import send_mail
 
 from django.conf import settings
@@ -24,6 +20,34 @@ import uuid
 import requests
 
 grand_total=0
+
+
+def productview(request, myid):
+    product = Product.objects.get(number=myid)
+    print(product.number)
+
+    return render(request, "product_detail.html", {'product': product})
+
+
+def search(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword'].strip()
+        if keyword:
+
+            try:
+                product = Product.objects.get(product_name=keyword)
+                print(product)
+                return render(request, "product_detail.html", {'product': product})
+
+
+            except Product.DoesNotExist:
+                return render(request, "product_detail.html", {'error': f'No products found for "{keyword}".'})
+
+    return render(request, "product_detail.html", {'error': 'Please enter a search term.'})
+
+
+
+
 
 
 def generate_unique_cart_id():
@@ -61,11 +85,6 @@ def productdisplay(request, categories):
     return render(request, "product_display.html", params)
 
 
-def productview(request, myid):
-    product = Product.objects.get(number=myid)
-    print(product.number)
-
-    return render(request, "product_detail.html", {'product':product})
 
 
 
@@ -255,7 +274,8 @@ def cart(request, total=0, quantity=0, cart_items=None):
                     grand_total = grand_total - discount
                     message = "coupon applied"
 
-
+                else:
+                    message = "invalid coupon code"
 
 
 

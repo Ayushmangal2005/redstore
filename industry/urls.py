@@ -29,6 +29,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('checkout/', views.checkout, name='checkout'),
     path('logout/', views.logoutuser, name='logoutuser'),
+    path('search/', views.search, name='search'),
 
     path('product/<str:categories>/', views.productdisplay, name='product_display'),
     path('product/details/<int:myid>', views.productview, name='product_detail'),
@@ -45,5 +46,3 @@ urlpatterns = [
     path('login/', views.loginaction, name='login'),
     path('register/', views.signaction, name='register'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns += staticfiles_urlpatterns()
